@@ -1,0 +1,23 @@
+import * as yup from 'yup';
+
+const formSchema = yup.object().shape({
+    fName: yup
+        .string()
+        .trim()
+        .required('First name required'),
+    lName: yup
+        .string()
+        .trim()
+        .required('Last name required'),
+    email: yup
+        .string()
+        .email('Must be a valid email')
+        .required('Email required'),
+    password: yup
+        .string()
+        .required('Password required')
+        .min(6, 'Password must be at least 6 characters long'),
+    agree: yup.boolean(['true'])
+})
+
+export default formSchema;
