@@ -1,8 +1,10 @@
 import {useState, useEffect} from 'react';
 import * as yup from 'yup';
+import axios from 'axios';
 import schema from './validation/formSchema';
 import './App.css';
 import Form from './components/Form';
+import User from './components/User';
 
 
 const initialFormValues = {
@@ -27,6 +29,7 @@ function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [disabled, setDisabled] = useState(true);
   const [errorValues, setErrorValues] = useState(initialErrorValues);
+  const [users, setUsers] = useState([]);
 
   const validate = (name, valueToUse) => {
     yup.reach(schema, name)
@@ -45,7 +48,15 @@ function App() {
     validate(name, valueToUse);
     setFormValues({...formValues, [name]: valueToUse});
   }
-  console.log(formValues);
+
+  const postNewUser = newUser => {
+    axios.post('https://reqres.in/api/users', newUser)
+      .then(res => {
+        setUsers([...users, res.data]);
+        setFormValues(initialFormValues);
+      })
+      .catch(err => console.error(err));
+  }
 
   const submit = evt => {
     evt.preventDefault();
@@ -59,10 +70,6 @@ function App() {
     postNewUser(newUser);
   }
 
-  function postNewUser(user) {
-    console.log(user);
-  }
-
   return (
     <div className="App">
       <Form 
@@ -72,6 +79,12 @@ function App() {
         errors={errorValues}
         submit={submit}
       />
+      <section>
+        <h3>Users List</h3>
+        {users.map(user => {
+          return <User key={user.id} user={user} />
+        })}
+      </section>
     </div>
   );
 }
