@@ -2,12 +2,12 @@ import './Form.css';
 
 
 export default function Form(props) {
-    const {values, change, disabled, errors} = props;
+    const {values, change, disabled, errors, submit} = props;
 
     return (
         <section>
             <h1>Become a Member!</h1>
-            <form>
+            <form onSubmit={submit}>
                 <div className='errors'>
                     <div>{errors.fName}</div>
                     <div>{errors.lName}</div>

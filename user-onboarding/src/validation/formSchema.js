@@ -16,6 +16,7 @@ const formSchema = yup.object().shape({
     password: yup
         .string()
         .required('Password required')
+        .matches(/^[a-zA-Z0-9]+$/, 'Password cannot contain white space or special character')
         .min(6, 'Password must be at least 6 characters long'),
     agree: yup.boolean().oneOf([true], 'You must agree to our terms')
 })

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import * as yup from 'yup';
 import schema from './validation/formSchema';
 import './App.css';
@@ -28,12 +28,16 @@ function App() {
   const [disabled, setDisabled] = useState(true);
   const [errorValues, setErrorValues] = useState(initialErrorValues);
 
-const validate = (name, valueToUse) => {
-  yup.reach(schema, name)
-    .validate(valueToUse)
-    .then(() => setErrorValues({...errorValues, [name]: ''}))
-    .catch(err => setErrorValues({...errorValues, [name]: err.errors[0]}))
-} 
+  const validate = (name, valueToUse) => {
+    yup.reach(schema, name)
+      .validate(valueToUse)
+      .then(() => setErrorValues({...errorValues, [name]: ''}))
+      .catch(err => setErrorValues({...errorValues, [name]: err.errors[0]}))
+  }
+
+  useEffect(() => {
+    schema.isValid(formValues).then(valid => setDisabled(!valid))
+  }, [formValues])
 
   const inputChange = event => {
     const {value, checked, name, type} = event.target;
@@ -43,7 +47,21 @@ const validate = (name, valueToUse) => {
   }
   console.log(formValues);
 
+  const submit = evt => {
+    evt.preventDefault();
+    const newUser = {
+      fName: formValues.fName.trim(),
+      lName: formValues.lName.trim(),
+      email: formValues.email.trim(),
+      password: formValues.password,
+      agree: formValues.agree ? 'Agreeable' : 'Hacker Alert!'
+    }
+    postNewUser(newUser);
+  }
 
+  function postNewUser(user) {
+    console.log(user);
+  }
 
   return (
     <div className="App">
@@ -52,6 +70,7 @@ const validate = (name, valueToUse) => {
         change={inputChange}
         disabled={disabled}
         errors={errorValues}
+        submit={submit}
       />
     </div>
   );
