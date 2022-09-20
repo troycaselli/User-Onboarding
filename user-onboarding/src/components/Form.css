@@ -3,7 +3,9 @@ form {
     flex-direction: column;
     align-items: center;
 }
-
 label {
     padding: 10px;
+}
+.errors {
+    color: red;
 }

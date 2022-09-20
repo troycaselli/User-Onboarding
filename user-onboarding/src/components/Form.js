@@ -2,12 +2,19 @@ import './Form.css';
 
 
 export default function Form(props) {
-    const {values, change, disabled} = props;
+    const {values, change, disabled, errors} = props;
 
     return (
         <section>
             <h1>Become a Member!</h1>
             <form>
+                <div className='errors'>
+                    <div>{errors.fName}</div>
+                    <div>{errors.lName}</div>
+                    <div>{errors.email}</div>
+                    <div>{errors.password}</div>
+                    <div>{errors.agree}</div>
+                </div>
                 <label> First Name:{' '}
                     <input
                         type='text'
@@ -40,7 +47,7 @@ export default function Form(props) {
                         onChange={change}
                     />
                 </label>
-                <label>Terms of Service:{' '}
+                <label>Agree to Terms of Service:{' '}
                     <input 
                         type='checkbox'
                         name='agree'
