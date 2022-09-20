@@ -8,8 +8,6 @@ import User from './components/User';
 
 
 const initialFormValues = {
-  // add uuid() ?
-  id: '',
   fName: '',
   lName: '',
   email: '',
@@ -80,7 +78,7 @@ function App() {
         submit={submit}
       />
       <section>
-        <h3>Users List</h3>
+        <h3>Member List</h3>
         {users.map(user => {
           return <User key={user.id} user={user} />
         })}
