@@ -55,7 +55,7 @@ export default function Form(props) {
                         checked={values.agree}
                     />
                 </label>
-                <button disabled={disabled}>Submit</button>
+                <button data-test-id='submit' disabled={disabled}>Submit</button>
             </form>
         </section>
     )
