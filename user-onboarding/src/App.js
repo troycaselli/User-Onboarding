@@ -40,8 +40,8 @@ function App() {
     schema.isValid(formValues).then(valid => setDisabled(!valid))
   }, [formValues])
 
-  const inputChange = event => {
-    const {value, checked, name, type} = event.target;
+  const inputChange = evt => {
+    const {value, checked, name, type} = evt.target;
     const valueToUse = type === 'checkbox' ? checked : value;
     validate(name, valueToUse);
     setFormValues({...formValues, [name]: valueToUse});
@@ -72,9 +72,9 @@ function App() {
     <div className="App">
       <Form 
         values={formValues}
-        change={inputChange}
         disabled={disabled}
         errors={errorValues}
+        change={inputChange}
         submit={submit}
       />
       <section>

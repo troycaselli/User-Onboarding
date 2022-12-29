@@ -2,7 +2,7 @@ import './Form.css';
 
 
 export default function Form(props) {
-    const {values, change, disabled, errors, submit} = props;
+    const {values, disabled, errors, change, submit} = props;
 
     return (
         <section>
