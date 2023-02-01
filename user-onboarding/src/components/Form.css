@@ -1,11 +1,31 @@
+#formSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* border: 1px solid rgb(95, 93, 93); */
+    width: 40vw;
+    padding: 1% 0 1.7% 0;
+    background-color: rgb(238, 236, 236);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 label {
     padding: 10px;
 }
 .errors {
     color: red;
+    font-style: italic;
+    margin-top: 0px;
+    font-size: .8rem;
+}
+#formButton {
+    margin-top: 15px;
+}
+#notice {
+    font-size: .7rem;
+    font-style: italic;
 }

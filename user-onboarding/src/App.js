@@ -1,11 +1,12 @@
 import {useState, useEffect} from 'react';
 import * as yup from 'yup';
 import axios from 'axios';
+
 import schema from './validation/formSchema';
-import './App.css';
 import Form from './components/Form';
 import User from './components/User';
 
+import './App.css';
 
 const initialFormValues = {
   fName: '',
@@ -25,8 +26,8 @@ const initialErrorValues = {
 
 function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [disabled, setDisabled] = useState(true);
   const [errorValues, setErrorValues] = useState(initialErrorValues);
+  const [disabled, setDisabled] = useState(true);
   const [users, setUsers] = useState([]);
 
   const validate = (name, valueToUse) => {
@@ -70,14 +71,14 @@ function App() {
 
   return (
     <div className="App">
-      <Form 
+      <Form
         values={formValues}
         disabled={disabled}
         errors={errorValues}
         change={inputChange}
         submit={submit}
       />
-      <section>
+      <section className='shadowed'>
         <h3>Member List</h3>
         {users.map(user => {
           return <User key={user.id} user={user} />

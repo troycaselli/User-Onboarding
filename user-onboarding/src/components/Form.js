@@ -5,16 +5,9 @@ export default function Form(props) {
     const {values, disabled, errors, change, submit} = props;
 
     return (
-        <section>
+        <section id='formSection'>
             <h1>Become a Member!</h1>
             <form onSubmit={submit}>
-                <div className='errors'>
-                    <div>{errors.fName}</div>
-                    <div>{errors.lName}</div>
-                    <div>{errors.email}</div>
-                    <div>{errors.password}</div>
-                    <div>{errors.agree}</div>
-                </div>
                 <label> First Name:{' '}
                     <input
                         type='text'
@@ -23,6 +16,7 @@ export default function Form(props) {
                         onChange={change}
                     />
                 </label>
+                <div className='errors'>{errors.fName}</div>
                 <label>Last Name:{' '}
                     <input 
                         type='text'
@@ -31,6 +25,7 @@ export default function Form(props) {
                         onChange={change}
                     />
                 </label>
+                <div className='errors'>{errors.lName}</div>
                 <label>Email:{' '}
                     <input 
                         type='email'
@@ -39,6 +34,7 @@ export default function Form(props) {
                         onChange={change}
                     />
                 </label>
+                <div className='errors'>{errors.email}</div>
                 <label>Password:{' '}
                     <input 
                         type='password'
@@ -47,6 +43,7 @@ export default function Form(props) {
                         onChange={change}
                     />
                 </label>
+                <div className='errors'>{errors.password}</div>
                 <label>Agree to Terms of Service:{' '}
                     <input 
                         type='checkbox'
@@ -55,7 +52,9 @@ export default function Form(props) {
                         checked={values.agree}
                     />
                 </label>
-                <button data-test-id='submit' disabled={disabled}>Submit</button>
+                <div className='errors'>{errors.agree}</div>
+                <button data-test-id='submit' id='formButton' disabled={disabled}>Submit</button>
+                <p id='notice'>All Fields Required</p>
             </form>
         </section>
     )
